@@ -18,4 +18,4 @@ Este repositorio contiene la arquitectura y lander web para la demostración de 
 - **Integración Backend:** Arquitectura de APIs / Webhooks agnósticos (compatible con REST APIs, plataformas No-Code / Automation y ERPs)
 
 ## 📄 Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE] (LICENSE) para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
