@@ -17,5 +17,9 @@ Este repositorio contiene la arquitectura y lander web para la demostración de 
 - **Despliegue & Hosting:** GitHub Pages / Cloudflare Pages
 - **Integración Backend:** Arquitectura de APIs / Webhooks agnósticos (compatible con REST APIs, plataformas No-Code / Automation y ERPs)
 
+## 🌐 Demo en vivo
+
+Puedes ver el sitio web en producción aquí: [https://techecomcod.com](https://techecomcod.com)
+
 ## 📄 Licencia
 Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
