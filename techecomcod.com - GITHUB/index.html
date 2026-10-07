@@ -1,0 +1,1081 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+    <title>TechEcom COD | Middleware logístico Anti-RTO para Pago Contra Reembolso</title>
+    <meta name="description" content="Protege el margen neto de tu e-commerce COD. Ecosistema Middleware as a Service (MaaS) de auditoría, geofencing, scoring de IP y confirmación CTI.">
+    
+    <!-- Open Graph / Meta Etiquetas Sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://edarjog.github.io/techecom-cod/">
+    <meta property="og:title" content="TechEcom COD | Middleware logístico Anti-RTO">
+    <meta property="og:description" content="Reduzca las devoluciones en su E-commerce COD con auditoría de datos, Geofencing y confirmación CTI.">
+    <meta property="og:image" content="https://lh3.googleusercontent.com/d/15WBmIN3yeTP3PgUPOTzwIfMuxqm2Byjm">
+
+    <!-- Enlace Canonical y Soporte Hreflang SEO -->
+    <link rel="canonical" href="https://edarjog.github.io/techecom-cod/">
+    <link rel="alternate" hreflang="es" href="https://edarjog.github.io/techecom-cod/?lang=es" />
+    <link rel="alternate" hreflang="en" href="https://edarjog.github.io/techecom-cod/?lang=en" />
+    <link rel="alternate" hreflang="pt" href="https://edarjog.github.io/techecom-cod/?lang=pt" />
+    <link rel="alternate" hreflang="x-default" href="https://edarjog.github.io/techecom-cod/" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/d/15WBmIN3yeTP3PgUPOTzwIfMuxqm2Byjm">
+
+    <!-- Schema.org JSON-LD Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "TechEcom COD",
+      "operatingSystem": "Cloud-based / Webhook API",
+      "applicationCategory": "BusinessApplication",
+      "offers": {
+        "@type": "AggregateOffer",
+        "priceCurrency": "EUR",
+        "lowPrice": "0",
+        "offerCount": "3"
+      },
+      "description": "Middleware as a Service (MaaS) de control logístico y financiero Anti-RTO para comercio de Pago Contra Reembolso.",
+      "creator": {
+        "@type": "Organization",
+        "name": "TechEcom COD",
+        "url": "https://edarjog.github.io/techecom-cod/"
+      }
+    }
+    </script>
+
+    <!-- Script para evitar parpadeo de tema -->
+    <script>
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+    </script>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#2563eb',
+                            navy: '#0f172a',
+                            cyan: '#0284c7',
+                            darkBg: '#090d16'
+                        }
+                    },
+                    screens: {
+                        'xs': '380px'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Cross-browser Touch Reset */
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        /* Standardized Sliders across browsers */
+        input[type=range] {
+            -webkit-appearance: none;
+            appearance: none;
+            background: transparent;
+        }
+
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+            transition: transform 0.1s ease, background-color 0.2s ease;
+            margin-top: -8px;
+        }
+
+        .dark input[type=range]::-webkit-slider-thumb {
+            background: #0284c7;
+            box-shadow: 0 0 12px rgba(2, 132, 199, 0.6);
+        }
+
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%;
+            height: 8px;
+            cursor: pointer;
+            border-radius: 9999px;
+        }
+
+        input[type=range]::-moz-range-thumb {
+            height: 24px;
+            width: 24px;
+            border-radius: 50%;
+            background: #2563eb;
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+        }
+
+        .dark input[type=range]::-moz-range-thumb {
+            background: #0284c7;
+        }
+
+        @keyframes flowPulse {
+            0% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+            100% { opacity: 0.2; transform: scale(0.8); }
+        }
+
+        .animate-flow-dot {
+            animation: flowPulse 2s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="bg-white dark:bg-slate-950 text-slate-800 dark:text-slate-200 font-sans antialiased transition-colors duration-200 selection:bg-blue-600 selection:text-white relative overflow-x-hidden">
+
+    <!-- Header & Navigation Bar -->
+    <header class="sticky top-0 z-50 backdrop-blur-md bg-white/95 dark:bg-slate-950/95 border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
+            
+            <!-- Brand Logo & Name -->
+            <a href="#" class="flex items-center gap-2 sm:gap-3 group min-w-0" aria-label="TechEcom COD Inicio">
+                <img src="https://lh3.googleusercontent.com/d/15WBmIN3yeTP3PgUPOTzwIfMuxqm2Byjm" 
+                     alt="TechEcom COD Escudo Logotipo Oficial Middleware" 
+                     class="h-8 sm:h-10 w-auto object-contain shrink-0 transition-transform group-hover:scale-105 filter dark:brightness-0 dark:invert" />
+                
+                <div class="flex flex-col min-w-0">
+                    <span class="text-base sm:text-xl font-bold tracking-tight text-slate-900 dark:text-white flex items-center gap-1 truncate">
+                        TECHECOM <span class="text-brand-blue dark:text-cyan-400">COD</span>
+                    </span>
+                    <span class="text-[7px] sm:text-[9px] tracking-widest text-slate-500 dark:text-slate-400 uppercase font-mono truncate hidden xs:block">Connect • Orchestrate • Deliver</span>
+                </div>
+            </a>
+            
+            <!-- Desktop Nav -->
+            <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-sm font-medium text-slate-600 dark:text-slate-300">
+                <a href="#modelo-maas" data-i18n="nav_maas" class="hover:text-brand-blue dark:hover:text-cyan-400 transition-colors">Modelo MaaS</a>
+                
+                <div class="relative group py-2">
+                    <button class="flex items-center gap-1.5 hover:text-brand-blue dark:hover:text-cyan-400 transition-colors focus:outline-none">
+                        <span data-i18n="nav_drop_solution">Solución & Flujo</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute left-0 top-full mt-1 w-56 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50">
+                        <a href="#envivo" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors">
+                            <i class="fa-solid fa-bolt text-cyan-500 w-4"></i> Orquestación en Vivo
+                        </a>
+                        <a href="#flujo-arquitectura" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors">
+                            <i class="fa-solid fa-diagram-project text-brand-blue w-4"></i> Flujo Middleware Paso a Paso
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative group py-2">
+                    <button class="flex items-center gap-1.5 hover:text-brand-blue dark:hover:text-cyan-400 transition-colors focus:outline-none">
+                        <span data-i18n="nav_drop_plans">Planes & ROI</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute left-0 top-full mt-1 w-52 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50">
+                        <a href="#niveles" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors">
+                            <i class="fa-solid fa-layer-group text-purple-500 w-4"></i> Arquitectura de Niveles
+                        </a>
+                        <a href="#calculadora" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors">
+                            <i class="fa-solid fa-calculator text-emerald-500 w-4"></i> Calculadora de Ahorro ROI
+                        </a>
+                    </div>
+                </div>
+
+                <div class="relative group py-2">
+                    <button class="flex items-center gap-1.5 hover:text-brand-blue dark:hover:text-cyan-400 transition-colors focus:outline-none">
+                        <span data-i18n="nav_drop_about">Nosotros</span>
+                        <i class="fa-solid fa-chevron-down text-[10px] opacity-70 group-hover:rotate-180 transition-transform"></i>
+                    </button>
+                    <div class="absolute left-0 top-full mt-1 w-52 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 p-2 z-50">
+                        <button onclick="openMissionModal()" class="w-full flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors text-left">
+                            <i class="fa-solid fa-bullseye text-brand-blue w-4"></i> Misión y Visión
+                        </button>
+                        <a href="#faq" class="flex items-center gap-2.5 px-3 py-2 rounded-lg text-xs hover:bg-slate-100 dark:hover:bg-slate-800 text-slate-700 dark:text-slate-200 transition-colors">
+                            <i class="fa-solid fa-circle-question text-amber-500 w-4"></i> Preguntas Frecuentes
+                        </a>
+                    </div>
+                </div>
+            </nav>
+
+            <!-- Actions Controls -->
+            <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+                <div class="relative inline-block text-left">
+                    <select id="lang-selector" onchange="changeLanguage(this.value)" aria-label="Seleccionar idioma" class="bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-300 text-xs font-semibold rounded-lg px-2 py-1.5 sm:px-2.5 sm:py-2 focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer">
+                        <option value="es">🇪🇸 ES</option>
+                        <option value="en">🇺🇸 EN</option>
+                        <option value="pt">🇧🇷 PT</option>
+                    </select>
+                </div>
+
+                <button id="theme-toggle" type="button" aria-label="Cambiar tema de color" class="p-1.5 sm:p-2 border border-slate-200 dark:border-slate-800 rounded-lg text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-all shrink-0">
+                    <i id="theme-toggle-dark-icon" class="hidden fa-solid fa-moon text-slate-300 text-sm sm:text-base"></i>
+                    <i id="theme-toggle-light-icon" class="hidden fa-solid fa-sun text-amber-500 text-sm sm:text-base"></i>
+                </button>
+
+                <button onclick="openDemoModal('Header Nav')" data-i18n="btn_demo" class="hidden sm:inline-flex items-center justify-center px-4 py-2 text-xs font-semibold text-white bg-brand-blue hover:bg-blue-700 dark:bg-gradient-to-r dark:from-brand-blue dark:to-cyan-500 rounded-lg shadow-sm transition-all cursor-pointer">
+                    Solicitar Demo
+                </button>
+
+                <button onclick="toggleMobileMenu()" aria-label="Abrir menú de navegación móvil" class="lg:hidden p-1.5 sm:p-2 text-slate-600 dark:text-slate-300 hover:text-brand-blue focus:outline-none">
+                    <i id="mobile-menu-icon" class="fa-solid fa-bars text-lg sm:text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white/95 dark:bg-slate-950/95 backdrop-blur-md border-b border-slate-200 dark:border-slate-800 px-4 pt-2 pb-6 space-y-3">
+            <a href="#modelo-maas" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-900">Modelo MaaS</a>
+            <a href="#envivo" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-900">Orquestación en Vivo</a>
+            <a href="#flujo-arquitectura" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-900">Flujo Middleware</a>
+            <a href="#niveles" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-900">Arquitectura de Niveles</a>
+            <a href="#calculadora" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-900">Calculadora ROI</a>
+            <button onclick="openMissionModal(); toggleMobileMenu();" class="block w-full text-left py-2 text-sm font-semibold text-slate-700 dark:text-slate-200 border-b border-slate-100 dark:border-slate-900">Misión y Visión</button>
+            <a href="#faq" onclick="toggleMobileMenu()" class="block py-2 text-sm font-semibold text-slate-700 dark:text-slate-200">Preguntas Frecuentes</a>
+            <button onclick="openDemoModal('Mobile Nav'); toggleMobileMenu();" class="w-full mt-3 py-3 text-center text-xs font-semibold text-white bg-brand-blue rounded-lg shadow-sm">
+                Solicitar Demo
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative py-12 sm:py-16 lg:py-24 overflow-hidden bg-slate-50 dark:bg-slate-950 border-b border-slate-200 dark:border-slate-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+                <div class="lg:col-span-7 space-y-5 sm:space-y-6">
+                    <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-950/60 border border-blue-200 dark:border-blue-500/30 text-brand-blue dark:text-cyan-400 text-[11px] sm:text-xs font-mono font-semibold max-w-full">
+                        <span class="w-2 h-2 rounded-full bg-brand-blue dark:bg-cyan-400 animate-pulse shrink-0"></span>
+                        <span class="truncate">ENTERPRISE COD MIDDLEWARE SOLUTIONS</span>
+                    </div>
+                    <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+                        <span data-i18n="hero_title_1">Infraestructura Agnóstica para</span> 
+                        <span class="text-brand-blue dark:text-transparent dark:bg-clip-text dark:bg-gradient-to-r dark:from-brand-blue dark:via-cyan-400 dark:to-teal-300" data-i18n="hero_title_2">Reducir el RTO en E-commerce COD</span>
+                    </h1>
+                    <p data-i18n="hero_desc" class="text-base sm:text-lg text-slate-600 dark:text-slate-400 max-w-2xl leading-relaxed">
+                        Conecte cualquier plataforma de e-commerce con operadores logísticos y servicios CTI. Filtre pedidos duplicados, valide cobertura geográfica y reduzca devoluciones de fletes antes de despachar.
+                    </p>
+                    <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-slate-700 dark:text-slate-300 italic text-xs sm:text-sm border-l-4 border-l-brand-blue shadow-sm">
+                        "<span data-i18n="hero_quote">Es infinitamente mejor perder una venta dudosa que ganar un flete devuelto.</span>"
+                    </div>
+                    <div class="flex flex-col sm:flex-row gap-3.5 pt-2">
+                        <button onclick="openDemoModal('Hero Principal')" data-i18n="btn_hero_demo" class="px-6 py-3.5 rounded-lg text-center font-semibold text-white bg-brand-blue hover:bg-blue-700 transition-colors shadow-md shadow-blue-500/20 cursor-pointer text-sm">
+                            Agendar Demostración Técnica
+                        </button>
+                        <a href="#calculadora" data-i18n="btn_hero_calc" class="px-6 py-3.5 rounded-lg text-center font-semibold text-slate-700 dark:text-slate-300 bg-white dark:bg-slate-900 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors border border-slate-300 dark:border-slate-700 flex items-center justify-center gap-2 shadow-sm text-sm">
+                            <i class="fa-solid fa-calculator"></i> <span data-i18n="btn_calc_text">Calcular Ahorro Estimado</span>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative flex justify-center w-full">
+                    <div class="relative w-full max-w-md bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-6 shadow-xl dark:shadow-2xl dark:shadow-cyan-950/50">
+                        <div class="flex items-center justify-between pb-4 border-b border-slate-100 dark:border-slate-800">
+                            <span class="text-[11px] sm:text-xs font-mono font-semibold text-brand-blue dark:text-cyan-400">Estado: Operacional</span>
+                            <span class="text-[10px] sm:text-xs text-slate-400 font-mono">v2.4.0-prod</span>
+                        </div>
+                        <div class="my-5 p-4 rounded-xl bg-slate-950 border border-slate-800 text-white">
+                            <span class="text-xs text-slate-400 font-mono block mb-1" data-i18n="hero_widget_savings">Fletes devueltos evitados hoy:</span>
+                            <span id="widget-today-savings" class="text-2xl sm:text-3xl font-extrabold text-emerald-400 font-mono">+€420.00</span>
+                        </div>
+                        <div class="space-y-2.5 font-mono text-[11px] sm:text-xs">
+                            <div class="flex justify-between items-center p-2.5 sm:p-3 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-800 gap-2">
+                                <span class="text-slate-600 dark:text-slate-400 truncate">[Webhook] Shopify #8921</span>
+                                <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 font-semibold shrink-0">Validado</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 sm:p-3 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-800 gap-2">
+                                <span class="text-slate-600 dark:text-slate-400 truncate">[Geofencing] Dropi/Correos</span>
+                                <span class="px-2 py-0.5 rounded bg-blue-100 dark:bg-blue-500/10 text-blue-700 dark:text-blue-400 font-semibold shrink-0">Cobertura OK</span>
+                            </div>
+                            <div class="flex justify-between items-center p-2.5 sm:p-3 rounded-lg bg-slate-50 dark:bg-slate-950/60 border border-slate-100 dark:border-slate-800 gap-2">
+                                <span class="text-slate-600 dark:text-slate-400 truncate">[Doble Pedido] +346123***</span>
+                                <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-500/10 text-amber-700 dark:text-amber-400 font-semibold shrink-0">Filtrado</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Orquestación en Vivo -->
+    <section id="envivo" class="py-16 sm:py-20 bg-slate-950 text-white relative overflow-hidden border-b border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <span class="text-xs font-mono text-cyan-400 uppercase tracking-widest font-semibold block mb-2" data-i18n="live_badge">CONMUTACIÓN Y AUDITORÍA EN TIEMPO REAL</span>
+                <h2 class="text-2xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-snug" data-i18n="live_title">
+                    Unificamos tus canales de venta.<br><span class="text-brand-blue dark:text-cyan-400">Filtramos y despachamos solo órdenes con rentabilidad garantizada.</span>
+                </h2>
+                <p class="text-slate-400 mt-4 text-xs sm:text-base leading-relaxed" data-i18n="live_desc">
+                    TechEcom COD actúa como la aduana lógica centralizada de tu negocio. Intercepta instantáneamente los pedidos de cualquier tienda online, aplica reglas strictly de geofencing, scoring de riesgo y confirmación CTI, e inyecta únicamente la carga validada en la plataforma logística de tu elección.
+                </p>
+            </div>
+
+            <div class="relative bg-slate-900/80 border border-slate-800 rounded-3xl p-5 sm:p-10 shadow-2xl backdrop-blur-xl">
+                <div class="grid lg:grid-cols-12 gap-6 lg:gap-8 items-center">
+                    <div class="lg:col-span-4 space-y-3">
+                        <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-arrow-right-to-bracket text-emerald-400"></i> Orígenes de Ventas
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 transition-colors">
+                            <i class="fa-brands fa-shopify text-xl text-emerald-400"></i>
+                            <span class="text-xs sm:text-sm font-bold">Shopify Store</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-blue-500/50 transition-colors">
+                            <i class="fa-brands fa-wordpress text-xl text-blue-400"></i>
+                            <span class="text-xs sm:text-sm font-bold">WooCommerce</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-pink-500/50 transition-colors">
+                            <i class="fa-solid fa-store text-xl text-pink-400"></i>
+                            <span class="text-xs sm:text-sm font-bold">YouCan / Lightfunnels</span>
+                        </div>
+                        <div class="flex items-center gap-3 p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-emerald-500/50 transition-colors">
+                            <i class="fa-solid fa-table text-xl text-emerald-500"></i>
+                            <span class="text-xs sm:text-sm font-bold">Google Sheets / Custom API</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 flex flex-col items-center justify-center my-4 lg:my-0 relative">
+                        <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-tr from-brand-blue via-cyan-500 to-teal-400 p-1 shadow-2xl shadow-cyan-500/30 flex items-center justify-center">
+                            <div class="w-full h-full bg-slate-950 rounded-[22px] flex flex-col items-center justify-center p-3 text-center">
+                                <img src="https://lh3.googleusercontent.com/d/15WBmIN3yeTP3PgUPOTzwIfMuxqm2Byjm" alt="Escudo TechEcom COD" class="h-8 sm:h-10 w-auto filter brightness-0 invert mb-2">
+                                <span class="text-[10px] sm:text-xs font-bold text-white tracking-tight">TECHECOM <span class="text-cyan-400">COD</span></span>
+                                <span class="text-[7px] sm:text-[8px] font-mono text-emerald-400 uppercase mt-1">Aduana Lógica</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-4 space-y-3">
+                        <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider mb-2 flex items-center gap-2">
+                            <i class="fa-solid fa-truck-fast text-cyan-400"></i> Despacho Limpio (Zero-RTO)
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 transition-colors">
+                            <span class="text-xs sm:text-sm font-bold">Dropi España</span>
+                            <span class="text-[9px] font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Auto-Inject
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 transition-colors">
+                            <span class="text-xs sm:text-sm font-bold">BigBuy Sourcing</span>
+                            <span class="text-[9px] font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> API Synced
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 transition-colors">
+                            <span class="text-xs sm:text-sm font-bold">Correos Express / CTT</span>
+                            <span class="text-[9px] font-mono text-cyan-400 px-2 py-0.5 rounded bg-cyan-500/10 border border-cyan-500/20 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span> Geofenced
+                            </span>
+                        </div>
+                        <div class="flex items-center justify-between p-3 rounded-xl bg-slate-950/80 border border-slate-800 hover:border-cyan-500/50 transition-colors">
+                            <span class="text-xs sm:text-sm font-bold">Almacén Propio / WMS</span>
+                            <span class="text-[9px] font-mono text-emerald-400 px-2 py-0.5 rounded bg-emerald-500/10 border border-emerald-500/20 flex items-center gap-1">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Direct Feed
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 sm:gap-4 mt-8 pt-6 border-t border-slate-800 text-center font-mono">
+                    <div>
+                        <span id="live-received" class="text-xl sm:text-3xl lg:text-4xl font-extrabold text-white">789</span>
+                        <span class="block text-[9px] sm:text-xs text-slate-400 uppercase mt-1">Recibidos</span>
+                    </div>
+                    <div>
+                        <span id="live-filtered" class="text-xl sm:text-3xl lg:text-4xl font-extrabold text-emerald-400">752</span>
+                        <span class="block text-[9px] sm:text-xs text-emerald-400/80 uppercase mt-1">Auditados</span>
+                    </div>
+                    <div>
+                        <span id="live-dispatched" class="text-xl sm:text-3xl lg:text-4xl font-extrabold text-cyan-400">748</span>
+                        <span class="block text-[9px] sm:text-xs text-slate-400 uppercase mt-1">Sin RTO</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Proof -->
+    <div class="py-8 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-100 dark:to-slate-900 border-b border-slate-200 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-[11px] font-mono text-slate-300 dark:text-slate-400 uppercase tracking-widest mb-6" data-i18n="social_proof_title">
+                ECOSISTEMA AGNÓSTICO INTEGRABLE MEDIANTE WEBHOOKS Y APIS REST
+            </p>
+            <div class="flex flex-wrap items-center justify-center gap-6 sm:gap-12 opacity-90 transition-all text-white dark:text-slate-200 font-bold text-sm sm:text-lg">
+                <span class="flex items-center gap-2"><i class="fa-brands fa-shopify text-emerald-400"></i> Shopify</span>
+                <span class="flex items-center gap-2"><i class="fa-brands fa-wordpress text-blue-400"></i> WooCommerce</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-box text-amber-400"></i> Dropi</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-truck text-indigo-400"></i> BigBuy</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-diagram-project text-purple-400"></i> Odoo ERP</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modelo MaaS -->
+    <section id="modelo-maas" class="py-16 sm:py-20 bg-white dark:bg-slate-950 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <h2 class="text-xs font-mono text-brand-blue dark:text-cyan-400 uppercase tracking-widest font-semibold mb-2">Agnosticismo & Arquitectura</h2>
+                <p data-i18n="maas_title" class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">Ecosistema Middleware as a Service (MaaS)</p>
+                <p data-i18n="maas_desc" class="text-slate-600 dark:text-slate-400 mt-3 text-xs sm:text-base">TechEcom COD no depende de instaladores complejos ni de chips telefónicos vulnerables a bloqueos. Conecta todo tu flujo de ventas con libertad total.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 sm:gap-8">
+                <div class="p-6 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 hover:border-brand-blue dark:hover:border-slate-700 transition-all shadow-sm">
+                    <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-blue-600/10 text-brand-blue dark:text-cyan-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-network-wired"></i>
+                    </div>
+                    <h3 data-i18n="card1_title" class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Intercepción por Webhook</h3>
+                    <p data-i18n="card1_desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Captura pedidos al instante desde cualquier checkout. Valida datos antes de que la orden sea enviada al almacén de despacho.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 hover:border-brand-blue dark:hover:border-slate-700 transition-all shadow-sm">
+                    <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-cyan-600/10 text-brand-blue dark:text-cyan-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-arrows-split-up-and-left"></i>
+                    </div>
+                    <h3 data-i18n="card2_title" class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Conmutación Logística &lt; 48h</h3>
+                    <p data-i18n="card2_desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Sistemas 100% agnósticos a la plataforma de despacho (Dropi, BigBuy, almacén propio). Cambia de proveedor sin pausar tus anuncios.</p>
+                </div>
+                <div class="p-6 rounded-xl bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-800/80 hover:border-brand-blue dark:hover:border-slate-700 transition-all shadow-sm">
+                    <div class="w-12 h-12 rounded-lg bg-blue-100 dark:bg-teal-600/10 text-brand-blue dark:text-teal-400 flex items-center justify-center text-xl mb-4">
+                        <i class="fa-solid fa-shield-halved"></i>
+                    </div>
+                    <h3 data-i18n="card3_title" class="text-lg font-semibold text-slate-900 dark:text-white mb-2">Aduana Matemática Estricta</h3>
+                    <p data-i18n="card3_desc" class="text-xs sm:text-sm text-slate-600 dark:text-slate-400">Algoritmo de limpieza que verifica C.P., nomenclatura de vía, formato móvil e inconsistencias de IP.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Niveles de Servicio -->
+    <section id="niveles" class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800/80 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12 sm:mb-16">
+                <h2 class="text-xs font-mono text-brand-blue dark:text-cyan-400 uppercase tracking-widest font-semibold mb-2">Estructura Modular</h2>
+                <p data-i18n="levels_title" class="text-2xl sm:text-4xl font-bold text-slate-900 dark:text-white tracking-tight">3 Niveles Adaptados a tu Operación</p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-6 sm:gap-8">
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="text-xs font-mono text-slate-500 uppercase mb-2">Nivel 1</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">MaaS Standard</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-6" data-i18n="l1_desc">Limpieza de datos sin requerir acceso a contabilidad o márgenes internos.</p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Filtro Anti-Duplicados directo</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Geofencing regional y validación C.P.</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Scoring de IP y cruce con Listas Negras</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Panel de fletes devueltos evitados</li>
+                        </ul>
+                    </div>
+                    <button onclick="openDemoModal('Plan Standard')" class="block w-full py-3 text-center text-xs sm:text-sm font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white transition-colors cursor-pointer" data-i18n="btn_l1">Seleccionar Standard</button>
+                </div>
+
+                <div class="rounded-2xl bg-white dark:bg-gradient-to-b dark:from-slate-900 dark:via-slate-900 dark:to-slate-950 border-2 border-brand-blue p-6 sm:p-8 flex flex-col justify-between relative shadow-xl">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 px-3 py-1 rounded-full bg-brand-blue text-[10px] font-bold text-white tracking-wider uppercase">Más Popular</div>
+                    <div>
+                        <div class="text-xs font-mono text-brand-blue dark:text-cyan-400 uppercase mb-2">Nivel 2</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">MaaS Pro</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-6" data-i18n="l2_desc">Filtro de datos + Integración API bidireccional con tu plataforma de despacho.</p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Todo lo incluido en Nivel 1</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Inyección automática de órdenes a API</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Sincronización de guías y transportadora</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-blue dark:text-cyan-400"></i> Panel Financiero de Caja y Margen Neto</li>
+                        </ul>
+                    </div>
+                    <button onclick="openDemoModal('Plan Pro')" class="block w-full py-3 text-center text-xs sm:text-sm font-semibold rounded-lg bg-brand-blue hover:bg-blue-700 text-white transition-colors shadow-md shadow-blue-500/20 cursor-pointer" data-i18n="btn_l2">Seleccionar Pro</button>
+                </div>
+
+                <div class="rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 p-6 sm:p-8 flex flex-col justify-between shadow-sm hover:shadow-md transition-shadow">
+                    <div>
+                        <div class="text-xs font-mono text-purple-600 dark:text-purple-400 uppercase mb-2">Nivel 3</div>
+                        <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white mb-4">MaaS Enterprise</h3>
+                        <p class="text-xs sm:text-sm text-slate-600 dark:text-slate-400 mb-6" data-i18n="l3_desc">Operación delegada 100%: Filtro + Confirmación telefónica CTI integrada.</p>
+                        <ul class="space-y-3 text-xs sm:text-sm text-slate-700 dark:text-slate-300 mb-8">
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 dark:text-purple-400"></i> Todo lo incluido en Nivel 2</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 dark:text-purple-400"></i> Agentes CTI dedicados con prefijo localizado</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 dark:text-purple-400"></i> Protocolos de llamada hasta L9 (3 días)</li>
+                            <li class="flex items-center gap-2"><i class="fa-solid fa-check text-purple-600 dark:text-purple-400"></i> Reporte Consolidado de Utilidad Neta</li>
+                        </ul>
+                    </div>
+                    <button onclick="openDemoModal('Plan Enterprise')" class="block w-full py-3 text-center text-xs sm:text-sm font-semibold rounded-lg bg-slate-100 hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700 text-slate-800 dark:text-white transition-colors cursor-pointer" data-i18n="btn_l3">Seleccionar Enterprise</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Calculadora ROI -->
+    <section id="calculadora" class="py-16 sm:py-20 bg-white dark:bg-slate-950 transition-colors">
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10 sm:mb-12">
+                <h2 data-i18n="calc_title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Calculadora de Impacto de Ahorro ROI</h2>
+                <p data-i18n="calc_subtitle" class="text-slate-600 dark:text-slate-400 mt-2 text-xs sm:text-sm">Proyecte el dinero rescatado en fletes de devolución al implementar filtrado CTI y Geofencing automatizado.</p>
+            </div>
+
+            <div class="bg-slate-50 dark:bg-slate-900/90 border border-slate-200 dark:border-slate-800 rounded-3xl p-5 sm:p-10 shadow-xl grid md:grid-cols-12 gap-6 sm:gap-8 items-center">
+                <div class="md:col-span-7 space-y-5 sm:space-y-6">
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-2 gap-2">
+                            <span class="text-slate-700 dark:text-slate-300" data-i18n="calc_vol">Volumen Mensual de Pedidos (COD):</span>
+                            <span id="vol-val" class="font-mono text-brand-blue dark:text-cyan-400 text-xs sm:text-sm font-bold shrink-0">500</span>
+                        </div>
+                        <input type="range" id="slider-vol" min="100" max="5000" step="50" value="500" class="w-full">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-2 gap-2">
+                            <span class="text-slate-700 dark:text-slate-300" data-i18n="calc_rto">Tasa Actual de Devolución (RTO):</span>
+                            <span id="rto-val" class="font-mono text-brand-blue dark:text-cyan-400 text-xs sm:text-sm font-bold shrink-0">18%</span>
+                        </div>
+                        <input type="range" id="slider-rto" min="5" max="40" step="1" value="18" class="w-full">
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between text-xs font-semibold mb-2 gap-2">
+                            <span class="text-slate-700 dark:text-slate-300" data-i18n="calc_cost">Costo Promedio de Flete I/V perdedor:</span>
+                            <span id="cost-val" class="font-mono text-brand-blue dark:text-cyan-400 text-xs sm:text-sm font-bold shrink-0">€7.50</span>
+                        </div>
+                        <input type="range" id="slider-cost" min="3" max="20" step="0.5" value="7.5" class="w-full">
+                    </div>
+                </div>
+
+                <div class="md:col-span-5 bg-slate-950 border border-slate-800 rounded-2xl p-5 sm:p-6 text-center text-white space-y-5">
+                    <div>
+                        <span class="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-1" data-i18n="calc_res_m">AHORRO NETO ESTIMADO POR MES</span>
+                        <div id="res-monthly" class="text-3xl sm:text-4xl font-extrabold text-emerald-400 font-mono">€337.50</div>
+                    </div>
+                    <div class="pt-4 border-t border-slate-800">
+                        <span class="text-[10px] sm:text-[11px] font-mono text-slate-400 uppercase tracking-wider block mb-1" data-i18n="calc_res_y">AHORRO PROYECTADO ANUAL</span>
+                        <div id="res-yearly" class="text-xl sm:text-2xl font-bold text-cyan-400 font-mono">€4.050.00</div>
+                    </div>
+                    <p class="text-[9px] sm:text-[10px] text-slate-500 italic leading-tight" data-i18n="calc_disclaimer">
+                        *Calculado bajo una reducción conservadora del 50% de las devoluciones por causa de duplicados y falta de confirmación telefónica/dirección incorrecta.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flujo de Arquitectura -->
+    <section id="flujo-arquitectura" class="py-16 bg-slate-50 dark:bg-slate-900 border-t border-b border-slate-200 dark:border-slate-800 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-10">
+                <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Flujo de Arquitectura y Auditoría Middleware</h2>
+                <p class="text-slate-600 dark:text-slate-400 mt-2 text-xs sm:text-sm">Inspección paso a paso de cómo TechEcom COD intercepta, audita y valida las órdenes en tiempo real antes del despacho.</p>
+            </div>
+            
+            <div class="bg-slate-950 border border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl relative overflow-hidden">
+                <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-4 relative z-10 text-white font-mono text-xs">
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 relative group hover:border-brand-blue transition-all">
+                        <div class="w-8 h-8 rounded-full bg-blue-600/20 text-brand-blue dark:text-cyan-400 flex items-center justify-center font-bold mb-3 border border-brand-blue/30">1</div>
+                        <h4 class="font-bold text-xs sm:text-sm text-slate-200 mb-1">E-commerce Checkout</h4>
+                        <p class="text-[11px] text-slate-400 font-sans leading-normal">Captura webhook instantáneo desde Shopify, WooCommerce o Landing Pages sin latencia.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 text-[9px] sm:text-[10px] text-emerald-400 flex items-center gap-1">
+                            <i class="fa-solid fa-circle-check text-[8px]"></i> Real-time Webhook Payload
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 relative group hover:border-brand-blue transition-all">
+                        <div class="w-8 h-8 rounded-full bg-blue-600/20 text-brand-blue dark:text-cyan-400 flex items-center justify-center font-bold mb-3 border border-brand-blue/30">2</div>
+                        <h4 class="font-bold text-xs sm:text-sm text-slate-200 mb-1">Aduana Matemática</h4>
+                        <p class="text-[11px] text-slate-400 font-sans leading-normal">Scoring de IP, normalización de prefijo móvil y detección de pedidos duplicados.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 text-[9px] sm:text-[10px] text-cyan-400 flex items-center gap-1">
+                            <i class="fa-solid fa-shield-halved text-[8px]"></i> Cleanse Algorithm
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 relative group hover:border-brand-blue transition-all">
+                        <div class="w-8 h-8 rounded-full bg-blue-600/20 text-brand-blue dark:text-cyan-400 flex items-center justify-center font-bold mb-3 border border-brand-blue/30">3</div>
+                        <h4 class="font-bold text-xs sm:text-sm text-slate-200 mb-1">Validación CTI / Geofencing</h4>
+                        <p class="text-[11px] text-slate-400 font-sans leading-normal">Verificación de Código Postal, dirección y confirmación telefónica automatizada.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 text-[9px] sm:text-[10px] text-amber-400 flex items-center gap-1">
+                            <i class="fa-solid fa-phone text-[8px]"></i> CTI Protocol Verified
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-slate-900/90 border border-slate-800 relative group hover:border-brand-blue transition-all">
+                        <div class="w-8 h-8 rounded-full bg-blue-600/20 text-brand-blue dark:text-cyan-400 flex items-center justify-center font-bold mb-3 border border-brand-blue/30">4</div>
+                        <h4 class="font-bold text-xs sm:text-sm text-slate-200 mb-1">Inyección a Despacho</h4>
+                        <p class="text-[11px] text-slate-400 font-sans leading-normal">Inyección segura de la orden limpia vía API REST a Dropi, BigBuy o WMS propio.</p>
+                        <div class="mt-3 pt-2 border-t border-slate-800/80 text-[9px] sm:text-[10px] text-emerald-400 flex items-center gap-1">
+                            <i class="fa-solid fa-truck-fast text-[8px]"></i> Zero-RTO Delivery
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-8 pt-6 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-center sm:text-left">
+                    <span class="text-xs font-mono text-slate-400">¿Deseas evaluar esta infraestructura en tu entorno de pruebas staging?</span>
+                    <button onclick="openDemoModal('Diagrama Arquitectura')" class="w-full sm:w-auto px-4 py-2.5 text-xs font-semibold text-white bg-brand-blue hover:bg-blue-700 rounded-lg transition-colors cursor-pointer shrink-0">
+                        Solicitar Acceso a Sandbox / API Docs
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-900/50 transition-colors">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 sm:mb-12">
+                <h2 data-i18n="faq_title" class="text-2xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">Preguntas Frecuentes Tácticas</h2>
+                <p data-i18n="faq_subtitle" class="text-slate-600 dark:text-slate-400 mt-2 text-xs sm:text-sm">Respuestas a dudas técnicas operativas para integradores y consultores de e-commerce.</p>
+            </div>
+
+            <div class="space-y-3.5">
+                <details class="group border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-900 dark:text-white text-sm sm:text-base gap-2">
+                        <span data-i18n="faq_q1">¿Qué sucede si nuestra logística actual cambia de software empresarial o proveedor?</span>
+                        <span class="ml-2 flex-shrink-0 text-brand-blue dark:text-cyan-400 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400" data-i18n="faq_a1">
+                        Debido a la arquitectura desacoplada de TechEcom COD, su tienda online o CRM nunca pierde la lógica de negocio. Simplemente se actualiza el conector o webhook del nuevo proveedor logístico en el middleware sin alterar los datos del e-commerce.
+                    </p>
+                </details>
+
+                <details class="group border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-900 dark:text-white text-sm sm:text-base gap-2">
+                        <span data-i18n="faq_q2">¿Cómo detecta la plataforma los pedidos duplicados involuntarios?</span>
+                        <span class="ml-2 flex-shrink-0 text-brand-blue dark:text-cyan-400 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400" data-i18n="faq_a2">
+                        El middleware aplica algoritmos de concordancia exacta y heurística sobre variables como el número telefónico normalizado, la dirección geolocalizada e IP de origen en un intervalo de tiempo configurable (ej. 24 horas).
+                    </p>
+                </details>
+
+                <details class="group border border-slate-200 dark:border-slate-800 rounded-xl bg-white dark:bg-slate-900 p-4 sm:p-5 [&_summary::-webkit-details-marker]:hidden">
+                    <summary class="flex items-center justify-between cursor-pointer font-semibold text-slate-900 dark:text-white text-sm sm:text-base gap-2">
+                        <span data-i18n="faq_q3">¿Requiere infraestructura en la nube propia para ejecutarse?</span>
+                        <span class="ml-2 flex-shrink-0 text-brand-blue dark:text-cyan-400 group-open:rotate-180 transition-transform"><i class="fa-solid fa-chevron-down"></i></span>
+                    </summary>
+                    <p class="mt-3 text-xs sm:text-sm leading-relaxed text-slate-600 dark:text-slate-400" data-i18n="faq_a3">
+                        Ofrecemos despliegue bajo el modelo Middleware-as-a-Service (MaaS) administrado por nosotros, o bien mediante licenciamiento e instalación en la nube privada del cliente (AWS, Azure, GCP).
+                    </p>
+                </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="bg-white dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800 py-10 sm:py-12 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left">
+                <div class="flex items-center gap-3">
+                    <img src="https://lh3.googleusercontent.com/d/15WBmIN3yeTP3PgUPOTzwIfMuxqm2Byjm" 
+                         alt="TechEcom COD Isotipo Escudo Footer" 
+                         class="h-7 sm:h-8 w-auto object-contain filter dark:brightness-0 dark:invert" />
+                    <span class="text-sm font-bold tracking-tight text-slate-900 dark:text-white">
+                        TECHECOM <span class="text-brand-blue dark:text-cyan-400">COD</span>
+                    </span>
+                </div>
+                <p class="text-[11px] sm:text-xs text-slate-500 font-mono">
+                    &copy; 2026 TechEcom COD Middleware Solution. Todos los derechos reservados.
+                </p>
+                <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-xs text-slate-500 font-medium">
+                    <button onclick="openMissionModal()" class="hover:text-brand-blue transition-colors cursor-pointer bg-transparent border-none p-0 text-xs text-slate-500">Misión y Visión</button>
+                    <a href="./privacidad.html" class="hover:text-brand-blue transition-colors">Privacidad</a>
+                    <a href="./terminos.html" class="hover:text-brand-blue transition-colors">Términos de Servicio</a>
+                    <a href="./sla.html" class="hover:text-brand-blue transition-colors">SLA</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- MODAL 1: MISIÓN Y VISIÓN -->
+    <div id="mission-modal" role="dialog" aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300">
+        <div class="relative w-full max-w-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl transition-all max-h-[90vh] overflow-y-auto">
+            <button onclick="closeMissionModal()" aria-label="Cerrar modal de misión y visión" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-lg transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="mb-5 border-b border-slate-100 dark:border-slate-800 pb-4">
+                <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-brand-blue dark:text-cyan-400 text-[10px] font-mono font-semibold mb-2">
+                    ESTRATEGIA & ENFOQUE TÉCNICO MAAS
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Misión y Visión Institucional</h3>
+            </div>
+
+            <div class="space-y-4 sm:space-y-6 text-sm text-slate-600 dark:text-slate-300">
+                <div class="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80">
+                    <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-bullseye text-brand-blue dark:text-cyan-400"></i> Misión
+                    </h4>
+                    <p class="leading-relaxed text-xs sm:text-sm">
+                        Proveer una infraestructura Middleware as a Service (MaaS) agnóstica, segura y altamente automatizada, diseñada para erradicar las devoluciones en destino (RTO) en operaciones E-Commerce de Pago Contra Reembolso (COD). Nuestra misión es actuar como una aduana lógica e inteligente entre plataformas de venta y operadores de despacho (Dropi, BigBuy, WMS propios), garantizando que solo ingresen a transporte aquellos pedidos auditados, geolocalizados y confirmados, protegiendo la tesorería y el margen neto de marcas, agencias y consultores tecnológicos.
+                    </p>
+                </div>
+
+                <div class="p-4 sm:p-5 rounded-xl bg-slate-50 dark:bg-slate-950 border border-slate-200 dark:border-slate-800/80">
+                    <h4 class="text-sm sm:text-base font-bold text-slate-900 dark:text-white flex items-center gap-2 mb-2">
+                        <i class="fa-solid fa-eye text-cyan-500"></i> Visión
+                    </h4>
+                    <p class="leading-relaxed text-xs sm:text-sm">
+                        Convertirnos en el estándar de oro de ingeniería middleware y orquestación logística B2B para el mercado COD en España y Europa hacia 2028. Nos proyectamos como la plataforma líder en conmutación de fletes en menos de 48 horas, integrando telefonía CTI especializada (+34), auditoría financiera automatizada y blindaje de datos, permitiendo que cualquier negocio de comercio electrónico escale sus ventas de forma predecible, eficiente y con cero riesgo de pérdidas flete-dependientes.
+                    </p>
+                </div>
+            </div>
+
+            <div class="mt-6 pt-4 border-t border-slate-100 dark:border-slate-800 text-right">
+                <button onclick="closeMissionModal()" class="px-5 py-2 text-xs font-semibold text-white bg-brand-blue hover:bg-blue-700 rounded-lg transition-colors cursor-pointer">
+                    Entendido
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL 2: DEMO (Conectado a Formspree) -->
+    <div id="demo-modal" role="dialog" aria-modal="true" class="fixed inset-0 z-50 hidden flex items-center justify-center p-3 sm:p-4 bg-slate-950/70 backdrop-blur-sm transition-opacity duration-300">
+        <div class="relative w-full max-w-lg bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl p-5 sm:p-8 shadow-2xl transition-all max-h-[92vh] overflow-y-auto">
+            <button onclick="closeDemoModal()" aria-label="Cerrar ventana de contacto" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-2 rounded-lg transition-colors">
+                <i class="fa-solid fa-xmark text-lg"></i>
+            </button>
+
+            <div class="mb-5">
+                <div class="inline-flex items-center gap-2 px-2.5 py-1 rounded-full bg-blue-50 dark:bg-blue-950/80 border border-blue-200 dark:border-blue-800 text-brand-blue dark:text-cyan-400 text-[10px] font-mono font-semibold mb-2">
+                    DEMO TÉCNICA Y CONSULTORÍA
+                </div>
+                <h3 class="text-xl sm:text-2xl font-bold text-slate-900 dark:text-white">Agendar Demostración</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Complete sus datos operacionales para que un especialista en middleware configure su prueba técnica.</p>
+            </div>
+
+            <form id="demo-form" action="https://formspree.io/f/xanyqbvw" method="POST" onsubmit="handleDemoSubmit(event)" autocomplete="off" class="space-y-3.5">
+                <input type="hidden" id="form-source" name="source" value="General">
+
+                <div>
+                    <label for="demo-name" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nombre y Apellido *</label>
+                    <input type="text" id="demo-name" name="name" required placeholder="Ej: Carlos Mendoza" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
+                    <div>
+                        <label for="demo-email" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email Corporativo *</label>
+                        <input type="email" id="demo-email" name="email" required placeholder="carlos@mitienda.com" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    </div>
+                    <div>
+                        <label for="demo-phone" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">WhatsApp / Teléfono *</label>
+                        <input type="tel" id="demo-phone" name="phone" required placeholder="+34 600 000 000" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                    </div>
+                </div>
+
+                <div>
+                    <label for="demo-vol" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Volumen Mensual Aprox. (Pedidos COD) *</label>
+                    <select id="demo-vol" name="volume" required class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue cursor-pointer">
+                        <option value="" disabled selected>Seleccione rango de pedidos</option>
+                        <option value="100-500">100 - 500 pedidos/mes</option>
+                        <option value="500-2000">500 - 2.000 pedidos/mes</option>
+                        <option value="2000-5000">2.000 - 5.000 pedidos/mes</option>
+                        <option value="5000+">+5.000 pedidos/mes (Enterprise)</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="demo-note" class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Plataformas actuales (Opcional)</label>
+                    <input type="text" id="demo-note" name="platforms" placeholder="Ej: Shopify + Dropi / WooCommerce + BigBuy" class="w-full px-3.5 py-2.5 rounded-lg text-sm bg-slate-50 dark:bg-slate-950 border border-slate-300 dark:border-slate-800 text-slate-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                </div>
+
+                <button type="submit" class="w-full py-3 mt-2 rounded-lg text-sm font-semibold text-white bg-brand-blue hover:bg-blue-700 dark:bg-gradient-to-r dark:from-brand-blue dark:to-cyan-500 shadow-md shadow-blue-500/20 transition-all cursor-pointer">
+                    Solicitar Confirmación y Demo
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript Lógica Completa -->
+    <script>
+        const translations = {
+            es: {
+                currencySymbol: "€",
+                nav_maas: "Modelo MaaS",
+                nav_drop_solution: "Solución & Flujo",
+                nav_drop_plans: "Planes & ROI",
+                nav_drop_about: "Nosotros",
+                btn_demo: "Solicitar Demo",
+                hero_title_1: "Infraestructura Agnóstica para",
+                hero_title_2: "Reducir el RTO en E-commerce COD",
+                hero_desc: "Conecte cualquier plataforma de e-commerce con operadores logísticos y servicios CTI. Filtre pedidos duplicados, valide cobertura geográfica y reduzca devoluciones de fletes antes de despachar.",
+                hero_quote: "Es infinitamente mejor perder una venta dudosa que ganar un flete devuelto.",
+                btn_hero_demo: "Agendar Demostración Técnica",
+                btn_calc_text: "Calcular Ahorro Estimado",
+                hero_widget_savings: "Fletes devueltos evitados hoy:",
+                live_badge: "CONMUTACIÓN Y AUDITORÍA EN TIEMPO REAL",
+                live_title: "Unificamos tus canales de venta.<br><span class=\"text-brand-blue dark:text-cyan-400\">Filtramos y despachamos solo órdenes con rentabilidad garantizada.</span>",
+                live_desc: "TechEcom COD actúa como la aduana lógica centralizada de tu negocio. Intercepta instantáneamente los pedidos de cualquier tienda online, aplica reglas estrictas de geofencing, scoring de riesgo y confirmación CTI, e inyecta únicamente la carga validada en la plataforma logística de tu elección.",
+                social_proof_title: "ECOSISTEMA AGNÓSTICO INTEGRABLE MEDIANTE WEBHOOKS Y APIS REST",
+                maas_title: "Ecosistema Middleware as a Service (MaaS)",
+                maas_desc: "TechEcom COD no depende de instaladores complejos ni de chips telefónicos vulnerables a bloqueos. Conecta todo tu flujo de ventas con libertad total.",
+                card1_title: "Intercepción por Webhook",
+                card1_desc: "Captura pedidos al instante desde cualquier checkout. Valida datos antes de que la orden sea enviada al almacén de despacho.",
+                card2_title: "Conmutación Logística < 48h",
+                card2_desc: "Sistemas 100% agnósticos a la plataforma de despacho (Dropi, BigBuy, almacén propio). Cambia de proveedor sin pausar tus anuncios.",
+                card3_title: "Aduana Matemática Estricta",
+                card3_desc: "Algoritmo de limpieza que verifica C.P., nomenclatura de vía, formato móvil e inconsistencias de IP.",
+                levels_title: "3 Niveles Adaptados a tu Operación",
+                l1_desc: "Limpieza de datos sin requerir acceso a contabilidad o márgenes internos.",
+                l2_desc: "Filtro de datos + Integración API bidireccional con tu plataforma de despacho.",
+                l3_desc: "Operación delegada 100%: Filtro + Confirmación telefónica CTI integrada.",
+                btn_l1: "Seleccionar Standard",
+                btn_l2: "Seleccionar Pro",
+                btn_l3: "Seleccionar Enterprise",
+                calc_title: "Calculadora de Impacto de Ahorro ROI",
+                calc_subtitle: "Proyecte el dinero rescatado en fletes de devolución al implementar filtrado CTI y Geofencing automatizado.",
+                calc_vol: "Volumen Mensual de Pedidos (COD):",
+                calc_rto: "Tasa Actual de Devolución (RTO):",
+                calc_cost: "Costo Promedio de Flete I/V perdedor:",
+                calc_res_m: "AHORRO NETO ESTIMADO POR MES",
+                calc_res_y: "AHORRO PROYECTADO ANUAL",
+                calc_disclaimer: "*Calculado bajo una reducción conservadora del 50% de las devoluciones por causa de duplicados y falta de confirmación telefónica/dirección incorrecta.",
+                faq_title: "Preguntas Frecuentes Tácticas",
+                faq_subtitle: "Respuestas a dudas técnicas operativas para integradores y consultores de e-commerce.",
+                faq_q1: "¿Qué sucede si nuestra logística actual cambia de software empresarial o proveedor?",
+                faq_a1: "Debido a la arquitectura desacoplada de TechEcom COD, su tienda online o CRM nunca pierde la lógica de negocio. Simplemente se actualiza el conector o webhook del nuevo proveedor logístico en el middleware sin alterar los datos del e-commerce.",
+                faq_q2: "¿Cómo detecta la plataforma los pedidos duplicados involuntarios?",
+                faq_a2: "El middleware aplica algoritmos de concordancia exacta y heurística sobre variables como el número telefónico normalizado, la dirección geolocalizada e IP de origen en un intervalo de tiempo configurable (ej. 24 horas).",
+                faq_q3: "¿Requiere infraestructura en la nube propia para ejecutarse?",
+                faq_a3: "Ofrecemos despliegue bajo el modelo Middleware-as-a-Service (MaaS) administrado por nosotros, o bien mediante licenciamiento e instalación en la nube privada del cliente (AWS, Azure, GCP)."
+            },
+            en: {
+                currencySymbol: "$",
+                nav_maas: "MaaS Model",
+                nav_drop_solution: "Solution & Flow",
+                nav_drop_plans: "Plans & ROI",
+                nav_drop_about: "About Us",
+                btn_demo: "Request Demo",
+                hero_title_1: "Agnostic Infrastructure to",
+                hero_title_2: "Reduce RTO in COD E-commerce",
+                hero_desc: "Connect any e-commerce platform with fulfillment partners and CTI services. Filter duplicate orders, validate geographic coverage, and cut return shipping costs before dispatch.",
+                hero_quote: "It's infinitely better to lose a doubtful sale than to pay for a returned shipment.",
+                btn_hero_demo: "Schedule Technical Demo",
+                btn_calc_text: "Calculate Estimated Savings",
+                hero_widget_savings: "Returned shipping costs saved today:",
+                live_badge: "REAL-TIME SWITCHING & AUDITING",
+                live_title: "Unified sales channels.<br><span class=\"text-brand-blue dark:text-cyan-400\">We filter and dispatch only profit-guaranteed orders.</span>",
+                live_desc: "TechEcom COD acts as your business's centralized logical customs. Intercept orders instantly, enforce strict geofencing and risk scoring, and inject only validated orders into your courier.",
+                social_proof_title: "AGNOSTIC ECOSYSTEM INTEGRABLE VIA WEBHOOKS AND REST APIS",
+                maas_title: "Middleware as a Service (MaaS) Ecosystem",
+                maas_desc: "TechEcom COD doesn't depend on complex plugins or vulnerable SIM arrays. Connect your entire sales pipeline with complete freedom.",
+                card1_title: "Webhook Interception",
+                card1_desc: "Instant order capture from any checkout. Validate data before orders reach fulfillment centers.",
+                card2_title: "Courier Switching < 48h",
+                card2_desc: "100% platform-agnostic systems. Switch couriers without pausing ad campaigns.",
+                card3_title: "Strict Mathematical Customs",
+                card3_desc: "Data-cleaning algorithm verifying ZIP codes, street formats, mobile numbers, and IP flags.",
+                levels_title: "3 Tiered Service Levels",
+                l1_desc: "Data cleansing without requiring access to internal margins.",
+                l2_desc: "Data filtering + 2-way API integration with your fulfillment provider.",
+                l3_desc: "100% delegated operation: Filtering + Integrated CTI call center confirmation.",
+                btn_l1: "Select Standard",
+                btn_l2: "Select Pro",
+                btn_l3: "Select Enterprise",
+                calc_title: "ROI Savings Calculator",
+                calc_subtitle: "Project money rescued from return shipping by implementing automated CTI and Geofencing.",
+                calc_vol: "Monthly COD Order Volume:",
+                calc_rto: "Current Return Rate (RTO):",
+                calc_cost: "Average Roundtrip Shipping Cost:",
+                calc_res_m: "ESTIMATED MONTHLY SAVINGS",
+                calc_res_y: "PROJECTED ANNUAL SAVINGS",
+                calc_disclaimer: "*Calculated based on a conservative 50% reduction in returns caused by duplicate orders and invalid contact data.",
+                faq_title: "Tactical FAQ",
+                faq_subtitle: "Operational answers for e-commerce integrators and tech consultants.",
+                faq_q1: "What if our current logistics provider changes software or operational partner?",
+                faq_a1: "Due to TechEcom COD's decoupled architecture, your online store never loses logic. We simply update the webhook connector on the middleware.",
+                faq_q2: "How does the platform detect accidental duplicate orders?",
+                faq_a2: "The middleware applies exact matching and heuristic rules to normalized phone numbers, geocoded addresses, and IP origins within configurable time windows.",
+                faq_q3: "Does it require self-hosted cloud infrastructure?",
+                faq_a3: "We offer fully managed Middleware-as-a-Service (MaaS) or private cloud deployment (AWS, Azure, GCP)."
+            },
+            pt: {
+                currencySymbol: "R$",
+                nav_maas: "Modelo MaaS",
+                nav_drop_solution: "Solução e Fluxo",
+                nav_drop_plans: "Planos e ROI",
+                nav_drop_about: "Sobre Nós",
+                btn_demo: "Solicitar Demo",
+                hero_title_1: "Infraestrutura Agnóstica para",
+                hero_title_2: "Reduzir o RTO no E-commerce COD",
+                hero_desc: "Conecte qualquer plataforma de e-commerce com operadores logísticos e serviços CTI. Filtre pedidos duplicados e valide cobertura geográfica.",
+                hero_quote: "É infinitamente melhor perder uma venda duvidosa do que pagar um frete de devolução.",
+                btn_hero_demo: "Agendar Demonstração Técnica",
+                btn_calc_text: "Calcular Economia Estimada",
+                hero_widget_savings: "Custos de devolução evitados hoje:",
+                live_badge: "AUDITORIA EM TEMPO REAL",
+                live_title: "Canal de vendas unificado.<br><span class=\"text-brand-blue dark:text-cyan-400\">Filtramos e enviamos apenas pedidos com lucro garantido.</span>",
+                live_desc: "O TechEcom COD atua como a alfândega lógica do seu negócio. Intercepte pedidos instantaneamente e envie apenas cargas validadas.",
+                social_proof_title: "ECOSSISTEMA AGNÓSTICO INTEGRÁVEL VIA WEBHOOKS E APIS REST",
+                maas_title: "Ecossistema Middleware as a Service (MaaS)",
+                maas_desc: "Conecte todo o seu fluxo de vendas com total liberdade sem dependência de plugins frágeis.",
+                card1_title: "Intercepção por Webhook",
+                card1_desc: "Captura instantânea de pedidos antes de chegar ao centro de distribuição.",
+                card2_title: "Troca de Logística < 48h",
+                card2_desc: "Sistemas 100% agnósticos. Mude de transportadora sem pausar campanhas.",
+                card3_title: "Alfândega Matemática Estrita",
+                card3_desc: "Algoritmo de limpeza que verifica CEP, endereço e validação de telefone.",
+                levels_title: "3 Níveis de Serviço",
+                l1_desc: "Limpeza de dados sem necessidade de acesso à contabilidade interna.",
+                l2_desc: "Filtro de dados + Integração API bidirecional com transportadoras.",
+                l3_desc: "Operação 100% delegada: Filtro + Confirmação telefônica CTI.",
+                btn_l1: "Selecionar Standard",
+                btn_l2: "Selecionar Pro",
+                btn_l3: "Selecionar Enterprise",
+                calc_title: "Calculadora de Economia ROI",
+                calc_subtitle: "Projete o dinheiro economizado em fretes com validação automatizada.",
+                calc_vol: "Volume Mensal de Pedidos (COD):",
+                calc_rto: "Taxa Atual de Devolução (RTO):",
+                calc_cost: "Custo Médio de Frete de Devolução:",
+                calc_res_m: "ECONOMIA MENSAL ESTIMADA",
+                calc_res_y: "ECONOMIA ANUAL PROJETADA",
+                calc_disclaimer: "*Calculado com base em uma redução conservadora de 50% nas devoluções por dados inválidos ou duplicados.",
+                faq_title: "Perguntas Frecuentes",
+                faq_subtitle: "Respostas técnicas para integradores e consultores.",
+                faq_q1: "O que acontece se mudarmos de operador logístico?",
+                faq_a1: "Com nossa arquitetura desacoplada, basta atualizar a integração no middleware sem impactar sua loja online.",
+                faq_q2: "Como a plataforma detecta pedidos duplicados?",
+                faq_a2: "O middleware cruza números de telefone, endereços e IPs em janelas de tempo personalizadas.",
+                faq_q3: "Requer infraestrutura própria na nuvem?",
+                faq_a3: "Oferecemos o modelo MaaS totalmente gerenciado ou implantação em nuvem privada."
+            }
+        };
+
+        let currentLang = "es";
+
+        function changeLanguage(lang) {
+            if (!translations[lang]) return;
+            currentLang = lang;
+            const dict = translations[lang];
+
+            document.querySelectorAll('[data-i18n]').forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if (dict[key]) {
+                    el.innerHTML = dict[key];
+                }
+            });
+
+            calculateROI();
+        }
+
+        // Toggle Dark/Light Mode
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = document.getElementById('theme-toggle-dark-icon');
+        const lightIcon = document.getElementById('theme-toggle-light-icon');
+
+        function updateThemeIcons() {
+            if (document.documentElement.classList.contains('dark')) {
+                darkIcon.classList.add('hidden');
+                lightIcon.classList.remove('hidden');
+            } else {
+                darkIcon.classList.remove('hidden');
+                lightIcon.classList.add('hidden');
+            }
+        }
+        updateThemeIcons();
+
+        themeToggleBtn.addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+            updateThemeIcons();
+        });
+
+        // Calculadora ROI
+        const sliderVol = document.getElementById('slider-vol');
+        const sliderRto = document.getElementById('slider-rto');
+        const sliderCost = document.getElementById('slider-cost');
+
+        const volVal = document.getElementById('vol-val');
+        const rtoVal = document.getElementById('rto-val');
+        const costVal = document.getElementById('cost-val');
+
+        const resMonthly = document.getElementById('res-monthly');
+        const resYearly = document.getElementById('res-yearly');
+
+        function calculateROI() {
+            if (!sliderVol) return;
+            const vol = parseFloat(sliderVol.value);
+            const rto = parseFloat(sliderRto.value) / 100;
+            const cost = parseFloat(sliderCost.value);
+            const symbol = translations[currentLang]?.currencySymbol || "€";
+
+            volVal.textContent = vol.toLocaleString();
+            rtoVal.textContent = sliderRto.value + "%";
+            costVal.textContent = `${symbol}${cost.toFixed(2)}`;
+
+            const returnsCount = vol * rto;
+            const monthlySavings = (returnsCount * cost) * 0.5;
+            const yearlySavings = monthlySavings * 12;
+
+            resMonthly.textContent = `${symbol}${monthlySavings.toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+            resYearly.textContent = `${symbol}${yearlySavings.toLocaleString('es-ES', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
+        }
+
+        if (sliderVol) {
+            sliderVol.addEventListener('input', calculateROI);
+            sliderRto.addEventListener('input', calculateROI);
+            sliderCost.addEventListener('input', calculateROI);
+            calculateROI();
+        }
+
+        // Navegación Móvil
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        }
+
+        // Modales
+        function openMissionModal() {
+            document.getElementById('mission-modal').classList.remove('hidden');
+        }
+
+        function closeMissionModal() {
+            document.getElementById('mission-modal').classList.add('hidden');
+        }
+
+        function openDemoModal(source = 'General') {
+            document.getElementById('form-source').value = source;
+            document.getElementById('demo-modal').classList.remove('hidden');
+        }
+
+        function closeDemoModal() {
+            document.getElementById('demo-modal').classList.add('hidden');
+        }
+
+        // Envío de Formulario
+        async function handleDemoSubmit(event) {
+            event.preventDefault();
+            const form = event.target;
+            const data = new FormData(form);
+
+            try {
+                const response = await fetch(form.action, {
+                    method: form.method,
+                    body: data,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    window.location.href = "./gracias.html";
+                } else {
+                    alert("Ocurrió un problema al enviar la solicitud. Por favor intente nuevamente.");
+                }
+            } catch (error) {
+                window.location.href = "./gracias.html";
+            }
+        }
+    </script>
+</body>
+</html>
