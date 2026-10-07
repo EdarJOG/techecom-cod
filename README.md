@@ -13,9 +13,9 @@ Este repositorio contiene la arquitectura y lander web para la demostración de 
 - `_headers`: Configuración de cabeceras HTTP para despliegue.
 
 ## 🛠️ Tecnologías Utilizadas
-- HTML5 / CSS3 / JavaScript
-- Microsoft 365 / Power Automate / SharePoint Online (Integración Backend)
-- GitHub Pages / Cloudflare
+- **Frontend:** HTML5, JavaScript (ES6+), Tailwind CSS
+- **Despliegue & Hosting:** GitHub Pages / Cloudflare Pages
+- **Integración Backend:** Arquitectura de APIs / Webhooks agnósticos (compatible con REST APIs, plataformas No-Code / Automation y ERPs)
 
 ## 📄 Licencia
-Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE](LICENSE) para más detalles.
+Este proyecto está bajo la Licencia MIT. Consulta el archivo [LICENSE] (LICENSE) para más detalles.
